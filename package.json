@@ -1,0 +1,29 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Danrley-Ruan-Saquetti/decorator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Danrley-Ruan-Saquetti/decorator/issues"
+  },
+  "homepage": "https://github.com/Danrley-Ruan-Saquetti/decorator#readme",
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "tslib": "^2.6.0",
+    "tsup": "^7.1.0"
+  }
+}
