@@ -46,7 +46,56 @@ import {
 //   method() {}
 // }
 
-function logExecutionDate(
+// function logExecutionDate(
+//   target: any,
+//   propertyName: string,
+//   descriptor: PropertyDescriptor
+// ) {
+//   const originalMethod = descriptor.value;
+
+//   descriptor.value = function (...args: any[]) {
+//     const currentDate = new Date().toLocaleString();
+//     console.log(`Method ${propertyName} executed on: ${currentDate}`);
+//     return originalMethod.apply(this, args);
+//   };
+
+//   return descriptor;
+// }
+
+// // Segundo decorator para calcular o tempo de execução do método
+// function logExecutionTime(
+//   target: any,
+//   propertyName: string,
+//   descriptor: PropertyDescriptor
+// ) {
+//   const originalMethod = descriptor.value;
+
+//   descriptor.value = function (...args: any[]) {
+//     console.time(`Execution time for ${propertyName}`);
+//     const result = originalMethod.apply(this, args);
+//     console.timeEnd(`Execution time for ${propertyName}`);
+//     return result;
+//   };
+
+//   return descriptor;
+// }
+
+// class MyClass {
+//   @logExecutionDate
+//   @logExecutionTime
+//   public someMethod() {
+//     // Simulação de um método que leva algum tempo para ser executado
+//     for (let i = 0; i < 1000000000; i++) {
+//       // Faz alguma computação...
+//     }
+//   }
+// }
+
+// const myClass = new MyClass();
+// myClass.someMethod();
+
+// Decorator de exemplo que é chamado sempre que o método decorado for executado
+function executeWithDecorator(
   target: any,
   propertyName: string,
   descriptor: PropertyDescriptor
@@ -54,26 +103,15 @@ function logExecutionDate(
   const originalMethod = descriptor.value;
 
   descriptor.value = function (...args: any[]) {
-    const currentDate = new Date().toLocaleString();
-    console.log(`Method ${propertyName} executed on: ${currentDate}`);
-    return originalMethod.apply(this, args);
-  };
+    // Lógica do decorator a ser executada antes do método original
+    console.log("Decorator was executed before the method.");
 
-  return descriptor;
-}
-
-// Segundo decorator para calcular o tempo de execução do método
-function logExecutionTime(
-  target: any,
-  propertyName: string,
-  descriptor: PropertyDescriptor
-) {
-  const originalMethod = descriptor.value;
-
-  descriptor.value = function (...args: any[]) {
-    console.time(`Execution time for ${propertyName}`);
+    // Chamada ao método original
     const result = originalMethod.apply(this, args);
-    console.timeEnd(`Execution time for ${propertyName}`);
+
+    // Lógica do decorator a ser executada após o método original
+    console.log("Decorator was executed after the method.");
+
     return result;
   };
 
@@ -81,15 +119,19 @@ function logExecutionTime(
 }
 
 class MyClass {
-  @logExecutionDate
-  @logExecutionTime
+  @executeWithDecorator
   public someMethod() {
-    // Simulação de um método que leva algum tempo para ser executado
-    for (let i = 0; i < 1000000000; i++) {
-      // Faz alguma computação...
-    }
+    console.log("This is the original method.");
   }
 }
 
 const myClass = new MyClass();
+myClass.someMethod();
+console.log();
+myClass.someMethod();
+console.log();
+myClass.someMethod();
+console.log();
+myClass.someMethod();
+console.log();
 myClass.someMethod();
