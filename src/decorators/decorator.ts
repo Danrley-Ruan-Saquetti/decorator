@@ -2,7 +2,7 @@ export function ClassDecorator(constructor: any) {}
 
 export function PropertyDecorator(target: any, key: string) {}
 
-export function MethodDecorator(value = false) {
+export function MethodDecorator() {
     return (target: any, key: string, descriptor: PropertyDescriptor) => {}
 }
 
